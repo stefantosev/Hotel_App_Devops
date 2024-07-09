@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <img  class="justify-content-center" src="https://media.istockphoto.com/id/1378157665/vector/save-the-date-label-with-calendar-icon.jpg?s=612x612&w=0&k=20&c=nDB8axf7lvsH7wXpBoOlLQcgnQm3FghBCprCIIAW7C8=">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success w-40">Add Reservation</button>
+    </form>
+</div>
+
+{% endblock %}

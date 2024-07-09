@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+         <div class="container mt-4">
+         <div class="row">
+             {% for r in rooms %}
+              {% if r.status_Cleaned and r.bed_number < 5 %}
+             <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body bg-dark">
+                        <h5 class="card-title text-white">Room Number: {{ r.r_number }}</h5>
+                        <p class="text-secondary">Bed Number: {{ r.bed_number }}</p>
+                        <p class="card-text text-white">Cleaned: {{ r.status_Cleaned }} <i class="bi bi-patch-check-fill"></i></p>
+                        <a class="btn btn-outline-primary rounded-0 text-white" href="/room/{{ r.id }}" >Details</a>
+                    </div>
+                </div>
+             </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+  <a class="navbar-brand" href="/index/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav"><li class="nav-item">
+        <a class="nav-link" href="/room/add/">Rooms</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/contact_us/">Contact us<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">About us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.welcome-hotels.com/site/assets/files/35059/welcome_hotel_marburg_lobby_2k.2560x1600.jpg') no-repeat;
+   background-size:cover; height: 70vh" class="text-white">
+      <div class="p-5">
+          <h1 class="text-uppercase">Welcome to our hotel</h1>
+          <h1 class="text-uppercase ansi-bold">with affordable prices</h1>
+          <p>How would you like to receive your meal? Lobby pickup? Placed at the door without interacting with staff members?</p>
+          <p>This hotel affords everything with style</p>
+          <button type="button" class="text-uppercase btn btn-primary rounded-0">Hotel details</button>
+      </div>
+  </div>
+</body>
+
+<div>
+    {% block content%}
+    {% endblock %}
+</div>
+
+
+</html>
