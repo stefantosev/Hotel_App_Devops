@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_NAME', 'hotels'),
         'USER': os.getenv('DATABASE_USER', 'postgres'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD', 'darthvaderstefan'),
-        'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+        'HOST': os.getenv('DATABASE_HOST', 'db'),
         'PORT': os.getenv('DATABASE_PORT', '5432')
     }
 }
