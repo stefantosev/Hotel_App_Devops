@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: my-middleware
+  namespace: hotel-app
+spec:
+  headers:
+    customRequestHeaders:
+      X-Custom-Header: "MyValue"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  namespace: hotel-app
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: hotel-app-my-middleware@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+  - host: hotels.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: myapp
+            port:
+              number: 8080
