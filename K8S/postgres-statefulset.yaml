@@ -25,7 +25,7 @@ metadata:
   namespace: hotel-app
 spec:
   serviceName: "postgres"
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: postgres

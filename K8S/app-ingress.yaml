@@ -27,4 +27,4 @@ spec:
           service:
             name: myapp
             port:
-              number: 8080
+              number: 80
