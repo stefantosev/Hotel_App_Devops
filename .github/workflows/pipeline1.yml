@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  check-required-files:
+    name: Check Required Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for required files
+        run: |
+          required_files=("Dockerfile" "docker-compose.yaml" "requirements.txt")
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "$file is missing"
+              exit 1
+            fi
+          done
+          echo "All required files are present"
+
+  check-yaml-syntax:
+    name: Check YAML Syntax
+    runs-on: ubuntu-latest
+    needs: check-required-files
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check YAML syntax
+        run: find . -name '*.yml' -exec yamllint {} +
+
+  build-and-push:
+    name: Build and Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: check-yaml-syntax
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+      - name: Build and Push to Docker Hub
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hotels_kol-web:latest
+
+      - name: Verify Docker Image
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hotels_kol-web:latest
